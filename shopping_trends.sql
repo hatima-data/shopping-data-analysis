@@ -240,11 +240,32 @@ select
 	group by category
 	order by max_purchase desc;
 	
+select
+	customer_id,
+	item_purchosed,
+	purchase_amount_usd
+	from shopping_trends
+	order by purchase_amount_usd desc
+	limit 1
+	offset 1;
+	
+select
+	count(*) as footwear_count
+	from shopping_trends
+	where category='Footwear';
 
-
-
-
-
+select 
+	customer_id,
+	item_purchosed,
+	purchase_amount_usd,
+	row_number() over(partition by customer_id order by purchase_amount_usd)
+	from shopping_trends;
+	
+select
+	customer_id,
+	purchase_amount_usd,
+	lag(purchase_amount_usd) over(partition by customer_id order by customer_id) as previous_purchase
+	from shopping_trends;
 
 
 
