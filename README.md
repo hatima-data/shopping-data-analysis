@@ -1,0 +1,1 @@
+# shopping_trends_data_anlyst
